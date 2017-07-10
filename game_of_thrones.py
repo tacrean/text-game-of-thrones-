@@ -1,0 +1,80 @@
+start = '''
+You are a young farm kid that has gotten bored with tending to the sheep day in
+and day out. You decide to go on an adventure and as you are leaving your village,
+ you come to a crossroads.To go right choose 1 and to go left choose 2.
+'''
+win = None
+from random import randint
+battle = None
+
+def question():
+    print("Choose 1 or 2")
+    user_input = int(input("What is your choice? "))
+    while user_input != 1 and user_input != 2:
+        print("not an option, try again!")
+        user_input = int(input("What is your choice?"))
+    return user_input
+
+def castle_black():
+    win = 0
+    print("You decide to join the nights watch and are assigned to go on a mission beyond" +
+    "the wall. Your convoy runs into a hord of white walkers and begin to fight. You must get past all three layers of gaurds.")
+    battle = randint(1,6)
+    while battle%2==0 and win <= 2:
+        print ("You have won one round")
+        win += 1
+        battle = randint(1,6)
+
+    if battle%2=1:
+        print("Game Over: You have been killed by a white walker.")
+
+    if win == 3:
+        print("You have made it past the white walker army and now must fight the king.")
+        battle = randint(1,2)
+        if battle == 1:
+            print("You have beaten the white walker king! Congradulations, you are now an esteemed member of the nights watch")
+        else:
+            print("The white walker king has killed you, game over.")
+
+
+
+print(start)
+user_input = question()
+
+if user_input == 1:
+    print("You decide to go right and head towards Castle Black")
+    print("Your see a pub, do you stop and spend the night (choose 1) or just grab a quick meal (choose 2)" +
+    " and keep heading to Castle Black?")
+    question()
+
+##sleep at the pub
+    if user_input == 1:
+        print("You get a good night's sleep and head onto Castle Black in the morning")
+        castle_black()
+
+##get a meal
+    if user_input == 2:
+        print("You sit down to eat and get recognized by a band of theives, do you choose to fight(choose 1) or run(choose 2)?")
+        question()
+
+        ##fight the thieves
+        if user_input == 1:
+            print("Choose either 1 or 2 and see if you win the fight")
+            question()
+            if user_input == 1:
+                print("You win the fight and continue onto Castle Black")
+                castle_black()
+            if user_input == 2:
+                print("You lose the fight and die. You probably shoudln't have gone on this adventure.")
+
+        ##run from the theives
+        if user_input == 2:
+            print("You make it out safe and continue onto Castle Black")
+            castle_black()
+
+
+
+
+
+elif user_input == 2:
+    print("You decide to go left and head towards the free city of Bravos")
